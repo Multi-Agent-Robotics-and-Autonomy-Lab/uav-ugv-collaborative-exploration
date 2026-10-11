@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "Energy-Aware Collaborative Exploration for a UAV-UGV Team"
+abstract: >-
+  An energy-aware collaborative exploration framework for a UAV-UGV team
+  operating in unknown environments, where the UAV's energy constraint is
+  modeled as a maximum flight-time limit. The UAV executes a sequence of
+  energy-bounded exploration tours while the UGV simultaneously explores on the
+  ground and serves as a mobile charging station. Rendezvous is enforced under a
+  shared time budget. A sparsely coupled air-ground roadmap is constructed using
+  a density-aware layered probabilistic roadmap, and tour selection is
+  formulated as coupled orienteering problems.
+authors:
+  - family-names: "Er"
+    given-names: "Cahit Ikbal"
+    affiliation: "Department of Mechanical and Industrial Engineering, Northeastern University"
+    email: "er.c@northeastern.edu"
+  - family-names: "Juttu"
+    given-names: "Saikiran"
+    affiliation: "Department of Mechanical and Industrial Engineering, Northeastern University"
+    email: "juttu.s@northeastern.edu"
+  - family-names: "Yazıcıoğlu"
+    given-names: "Yasin"
+    affiliation: "Departments of Mechanical and Industrial Engineering and Electrical and Computer Engineering, Northeastern University"
+    email: "y.yazicioglu@northeastern.edu"
+license: MIT
+repository-code: "https://github.com/juttu-s/uav-ugv-collaborative-exploration"
+keywords:
+  - robotics
+  - autonomous exploration
+  - UAV
+  - UGV
+  - heterogeneous multi-robot systems
+  - probabilistic roadmap
+  - orienteering problem
+  - ROS
+preferred-citation:
+  type: article
+  title: "Energy-Aware Collaborative Exploration for a UAV-UGV Team"
+  authors:
+    - family-names: "Er"
+      given-names: "Cahit Ikbal"
+    - family-names: "Juttu"
+      given-names: "Saikiran"
+    - family-names: "Yazıcıoğlu"
+      given-names: "Yasin"
+  year: 2026
+  journal: "arXiv preprint"
+  url: "https://arxiv.org/abs/2603.22507"
+  notes: "arXiv:2603.22507"

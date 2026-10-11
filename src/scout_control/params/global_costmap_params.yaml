@@ -1,0 +1,42 @@
+global_costmap:
+   global_frame: map
+   robot_base_frame: base_link
+   update_frequency: 7.0
+   publish_frequency: 21.0
+   width: 40.0
+   height: 40.0
+   resolution: 0.1
+   static_map: true
+   rolling_window: false
+
+   plugins: 
+   - {name: static_layer, type: "costmap_2d::StaticLayer"}
+   - {name: obstacles_layer, type: "costmap_2d::ObstacleLayer"}
+   - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
+   # --- STATIC LAYER ---
+  # This reads the map from Gmapping/Cartographer
+   static_layer:
+      enabled: true
+      map_topic: /map
+      subscribe_to_updates: true
+
+  # --- OBSTACLES LAYER (Crucial Fix) ---
+  # This must match the fix you applied to the local costmap!
+   obstacles_layer:
+    enabled: true
+    obstacle_range: 2.5
+    raytrace_range: 3.0
+    
+    observation_sources: scan_sensor
+
+    scan_sensor:
+      data_type: LaserScan
+      topic: /front_scan     # <--- ENSURE THIS IS /front_scan
+      marking: true
+      clearing: true
+      inf_is_valid: true
+
+  # --- INFLATION LAYER ---
+   inflation_layer:
+    inflation_radius: 0.6
+    cost_scaling_factor: 5.0

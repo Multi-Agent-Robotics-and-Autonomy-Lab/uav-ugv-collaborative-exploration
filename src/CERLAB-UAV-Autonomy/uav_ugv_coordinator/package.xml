@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>uav_ugv_coordinator</name>
+  <version>1.0.0</version>
+  <description>
+    Mission-level coordinator for energy-aware collaborative exploration with a
+    UAV-UGV team. Runs a finite state machine that sequences takeoff, an initial
+    360-degree scan, planner invocation, simultaneous execution of the coupled
+    UAV and UGV orienteering tours, and rendezvous landing of the UAV on the UGV.
+    Companion code for "Energy-Aware Collaborative Exploration for a UAV-UGV
+    Team" (arXiv:2603.22507).
+  </description>
+
+  <maintainer email="juttu.s@northeastern.edu">Saikiran Juttu</maintainer>
+
+  <author email="er.c@northeastern.edu">Cahit Ikbal Er</author>
+  <author email="juttu.s@northeastern.edu">Saikiran Juttu</author>
+  <author email="y.yazicioglu@northeastern.edu">Yasin Yazicioglu</author>
+
+  <license>MIT</license>
+
+  <url type="repository">https://github.com/juttu-s/uav-ugv-collaborative-exploration</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Workspace packages. These are linked at runtime as well as build time,
+       so they are declared with <depend> rather than <build_depend>. -->
+  <depend>autonomous_flight</depend>
+  <depend>global_planner</depend>
+  <depend>map_manager</depend>
+  <depend>trajectory_planner</depend>
+  <depend>tracking_controller</depend>
+
+  <!-- ROS messages and client libraries -->
+  <depend>actionlib</depend>
+  <depend>geometry_msgs</depend>
+  <depend>mavros_msgs</depend>
+  <depend>move_base_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+
+  <export>
+  </export>
+</package>

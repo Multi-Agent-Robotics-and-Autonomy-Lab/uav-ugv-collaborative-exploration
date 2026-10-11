@@ -1,0 +1,36 @@
+local_costmap:
+   global_frame: map
+   robot_base_frame: base_link
+   update_frequency: 10.0
+   publish_frequency: 20.0
+   width: 20.0
+   height: 20.0
+   resolution: 0.1
+   static_map: false
+   rolling_window: true
+
+   plugins:
+   - {name: obstacles_layer, type: "costmap_2d::ObstacleLayer"}  # same instance name
+   - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+   obstacles_layer:
+    enabled: true
+    obstacle_range: 2.5
+    raytrace_range: 3.0
+    
+    # This line tells the layer to look for a source named "scan_sensor"
+    observation_sources: scan_sensor 
+
+    scan_sensor:
+      data_type: LaserScan
+      topic: /front_scan   # <--- UPDATED: This now matches your actual sensor!
+      marking: true
+      clearing: true
+      inf_is_valid: true   # Good to keep true for simulation lidars
+  # ------------------------------------
+
+   inflation_layer:
+    inflation_radius: 0.6
+    cost_scaling_factor: 5.0
+
+

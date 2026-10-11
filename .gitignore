@@ -1,0 +1,19 @@
+# Catkin build products
+build/
+devel/
+install/
+logs/
+.catkin_tools/
+.catkin_workspace
+
+# Python
+__pycache__/
+*.pyc
+
+# Large media — the demo video is published as a GitHub Release asset
+*.mp4
+
+# Editor / OS
+*~
+*.swp
+.DS_Store

@@ -1,0 +1,45 @@
+<launch>
+  <!-- MAVROS topic remaps (match your working setup) -->
+  <remap from="/mavros/local_position/odom" to="CERLAB/quadcopter/odom" />
+  <remap from="/mavros/setpoint_raw/local" to="CERLAB/quadcopter/cmd_acc" />
+
+  <!-- Controller config + node (required if you call takeoff/moveToOrientation/stop) -->
+  <rosparam file="$(find tracking_controller)/cfg/controller_param.yaml" ns="controller"/>
+  <node pkg="tracking_controller" type="tracking_controller_node" name="tracking_controller_node" output="screen"/>
+
+  <!-- Load EXACTLY the same parameter files / namespaces as in dynamic_exploration.launch -->
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_inspection/fake_detector_param.yaml" />   <!-- global -->
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_exploration/flight_base.yaml" ns="autonomous_flight"/>
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_exploration/exploration_param.yaml" ns="DEP"/>
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_exploration/planner_param.yaml" />       <!-- global -->
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_exploration/dynamic_detector_param.yaml" ns="/onboard_detector" />
+  <rosparam file="$(find autonomous_flight)/cfg/dynamic_exploration/mapping_param.yaml" ns="/dynamic_map" />
+
+  <!-- Optional: same throttling helper your working launch used -->
+  <node pkg="autonomous_flight" type="throttle_topics.sh" name="throttle_topics" />
+
+  <!-- Coordinator (it constructs dynamicExploration with a GLOBAL NodeHandle) -->
+  <node pkg="uav_ugv_coordinator"
+        type="uav_ugv_coordinator"
+        name="uav_ugv_coordinator"
+        output="screen">
+    <!-- Coordinator parameters. See docs/PARAMETERS.md for tuning guidance. -->
+
+    <!-- Frame used for the move_base goals sent to the UGV. -->
+    <param name="map_frame"           value="map"/>
+    <!-- Dwell time at each of the four yaw stops of the initial 360 scan (s). -->
+    <param name="scan_hold_sec"       value="5.0"/>
+    <!-- Per-waypoint move_base timeout before the UGV skips ahead (s). -->
+    <param name="ugv_nav_timeout_sec" value="300.0"/>
+    <!-- 3D tolerance for declaring a UAV waypoint reached (m). -->
+    <param name="reach_tol_xyz"       value="0.25"/>
+
+    <!-- Topics. These match the node defaults and are listed explicitly so the
+         wiring is visible without reading the source. -->
+    <param name="uav_path_topic"      value="/uav/op_path"/>
+    <param name="ugv_path_topic"      value="/ugv/op_path"/>
+    <param name="ext_waypoints_topic" value="/uav_ugv_coordinator/waypoints"/>
+    <param name="completion_topic"    value="/exploration/complete"/>
+    <param name="request_op_topic"    value="/global_planner/request_op"/>
+  </node>
+</launch>

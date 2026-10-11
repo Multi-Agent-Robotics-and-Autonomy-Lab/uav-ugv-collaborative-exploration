@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>scout_control</name>
+  <version>0.1.0</version>
+  <description>
+    Navigation and control parameter sets for the AgileX Scout Mini UGV:
+    move_base, 2D costmaps, and the TEB / DWA / base local planners. Loaded by
+    scout_gazebo_sim/launch/include/move_base.launch. The planner and costmap
+    values here were tuned for the UAV-UGV collaborative exploration experiments.
+  </description>
+
+  <maintainer email="juttu.s@northeastern.edu">Saikiran Juttu</maintainer>
+
+  <!-- Originates from the AgileX / Weston Robot scout_ros family; licensed
+       BSD-3-Clause to match its sibling packages scout_description and
+       scout_gazebo_sim. See THIRD_PARTY_NOTICES.md. -->
+  <license>BSD-3-Clause</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>velocity_controllers</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>costmap_2d</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <exec_depend>dwa_local_planner</exec_depend>
+  <exec_depend>base_local_planner</exec_depend>
+
+  <export>
+  </export>
+</package>
