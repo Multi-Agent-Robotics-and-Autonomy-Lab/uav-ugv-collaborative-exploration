@@ -5,9 +5,7 @@
 [![Video](https://img.shields.io/badge/video-simulation%20%26%20experiments-c4302b)](https://youtu.be/_oIx-_JZMKk)
 
 Code and Gazebo simulation for our IROS 2026 paper, including the proposed planner and the
-variants used in our benchmark comparisons. Developed at the
-[Multi-Agent Robotics and Autonomy Lab](https://github.com/Multi-Agent-Robotics-and-Autonomy-Lab),
-Northeastern University.
+variants used in our benchmark comparisons.
 
 ## Abstract
 
@@ -53,8 +51,7 @@ Module-level design is described in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.m
 - Gazebo 11 (included in `ros-noetic-desktop-full`)
 - A GPU is recommended. Results in the paper were produced on an i9-14900K with an RTX 4090.
 
-`main` is the ROS Noetic version used for the paper. A ROS 2 port is in progress on the
-`ros2` branch.
+`main` is the ROS Noetic version used for the paper. A ROS 2 port is in progress.
 
 <details>
 <summary><b>Install dependencies</b></summary>
@@ -273,3 +270,11 @@ The UAV stack in `src/CERLAB-UAV-Autonomy` is adapted from
 derive from AgileX / Weston Robot `scout_ros`. The repository also includes MOSEK, a
 commercial solver not covered by the MIT license. See
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) before redistributing.
+
+## Authors
+
+Developed at the [Multi-Agent Robotics and Autonomy Lab](https://github.com/Multi-Agent-Robotics-and-Autonomy-Lab),
+Northeastern University. Development was led by [Saikiran Juttu](https://github.com/juttu-s), who
+is also leading the ROS 2 port. The repository is maintained by Saikiran Juttu and
+[Cahit Ikbal Er](https://github.com/cahiter), under the supervision of
+[Yasin Yazıcıoğlu](https://github.com/yasin-yazicioglu).
