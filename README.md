@@ -34,38 +34,14 @@ passages the UAV cannot fly through, and the UAV can reach elevated structures
 the UGV cannot climb. Neither robot alone achieves full coverage in the test
 environments.
 
-### How the two robots share a map
-
-Mapping is bidirectional, but all planning is aerial — there is no second
-planner on the UGV:
-
-```
-UGV Velodyne ─► PassThrough filter ─► map_fusion_node ─► occupancy map
-                                                            ▲   │
-gmapping /map ──────── inject2DFreeSpace ───────────────────┘   │
-                                                                ▼
-                                                   DEP: layered PRM
-                                                   + coupled OP solve
-                                                      │          │
-                                              /uav/op_path  /ugv/op_path
-                                                      │          │
-                                                      ▼          ▼
-                                          uav_ugv_coordinator FSM
-                                                      │          │
-                                           B-spline traj     move_base
-```
-
-The UGV contributes sensor data and odometry; the planner runs inside the UAV
-process, projects the aerial roadmap to the ground, and publishes both tours.
-Before injecting UGV scans, the coordinator erases the UGV's own footprint from
-the map so the rover does not carve a moving phantom obstacle through the
-roadmap.
-
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the module-level design.
 
 ---
 
 ## Requirements
+
+> `main` is the **ROS Noetic** release used for the IROS paper. A ROS 2 port is
+> under development on the `ros2` branch.
 
 - **Ubuntu 20.04** with **ROS Noetic**
 - Gazebo 11 (ships with `ros-noetic-desktop-full`)
@@ -112,8 +88,7 @@ source /opt/ros/noetic/setup.bash
 catkin_make -DCMAKE_BUILD_TYPE=Release
 ```
 
-Use **`catkin_make`**, not `catkin build` — this workspace ships a
-`.catkin_tools/CATKIN_IGNORE` marker.
+Use **`catkin_make`**, not `catkin build`.
 
 Then, **in every terminal you open**:
 
